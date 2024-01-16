@@ -8,7 +8,7 @@ body {
 }
 
 .card {
-    width: 400px;
+    width: 450px;
     height: 500px;
     margin: auto;
 }
@@ -39,4 +39,14 @@ body {
     text-decoration: none;
     margin: 4px 2px;
     cursor: pointer;
+}
+
+.column {
+    flex: 50%;
+    padding: 10px;
+    height: 300px;
+}
+
+.column, .p {
+    font-size: 10pt;
 }
