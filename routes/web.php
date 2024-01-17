@@ -45,6 +45,7 @@ Route::group(['middleware' => ['auth']], function()
     Route::group(['middleware' => ['cek_login:pelajar']], function()
     {
         Route::get('/dashboardpelajar', 'App\Http\Controllers\PelajarController@index')->name('Pelajar');
+        Route::post('/proses_beli', 'App\Http\Controllers\PelajarController@proses_beli')->name('Pelajar');
     });
 });
 

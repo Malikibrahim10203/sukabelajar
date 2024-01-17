@@ -12,7 +12,7 @@
 <div class="card">
         <div class="title">
             @foreach($materi as $m)
-                <form action="{{ url('proses_edit')}}" method="post">
+                <form action="{{ url('proses_edit')}}" method="post" enctype="multipart/form-data">
                     {{ csrf_field() }}  
                     <h2>Edit </h2>
                         <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>

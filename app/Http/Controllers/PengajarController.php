@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class PengajarController extends Controller
 {
@@ -39,7 +40,8 @@ class PengajarController extends Controller
             'id'=>Auth::User()->id,
             'nama_materi'=>$request->nama_materi,
             'deskripsi'=>$request->deskripsi,
-            'img' => $file->getClientOriginalName(),
+            'img_catalog' => $file->getClientOriginalName(),
+            'modal' => Str::random(5),
         ]);
 
         $tujuan_upload = 'data_file';
