@@ -30,6 +30,12 @@
                                 <input type="text" class="input" name="deskripsi" id="deskripsi" value="{{ $m->deskripsi }}" placeholder="deskripsi">
                             </div>
                         </div>
+                        <div class="mb-3 row text-center">
+                            <label for="harga" class="col-sm-2 col-form-label"><i class="bi bi-currency-dollar" style="font-size: 20px; color: #6B728E;"></i></i></label>
+                            <div class="col-sm-10">
+                                <input type="text" class="input" name="harga" id="harga" value="{{ $m->harga }}" placeholder="harga">
+                            </div>
+                        </div>
                         <button type="submit" class="mt-3 btn-kirim">Simpan</button>
                 </form>
             @endforeach

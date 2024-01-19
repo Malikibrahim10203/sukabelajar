@@ -30,11 +30,11 @@ class AuthController extends Controller
             $user = Auth::user();
             if($user->level == 'pengajar')
             {
-                return redirect('/dashboardadmin');
+                return redirect('/dashboardadmin')->with('alert-success','Login berhasil!');
             } 
             else if($user->level == 'pelajar')
             {
-                return redirect('/dashboardpelajar');
+                return redirect('/dashboardpelajar')->with('alert-success','Login berhasil!');
             }
             return redirect()->intended('/dashboard');
         }

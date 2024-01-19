@@ -24,11 +24,19 @@
                         </div>
                     </div>
                     <div class="mb-3 row text-center">
-                        <label for="password" class="col-sm-2 col-form-label"><i class="bi bi-body-text " style="font-size: 20px; color: #6B728E;"></i></i></label>
+                        <label for="password" class="col-sm-2 col-form-label"><i class="bi bi-body-text" style="font-size: 20px; color: #6B728E;"></i></i></label>
                         <div class="col-sm-10">
                             <input type="text" class="input" name="deskripsi" id="password" placeholder="Deskripsi">
                         </div>
                     </div>
+
+                    <div class="mb-3 row text-center">
+                        <label for="harga" class="col-sm-2 col-form-label"><i class="bi bi-currency-dollar" style="font-size: 20px; color: #6B728E;"></i></i></label>
+                        <div class="col-sm-10">
+                            <input type="number" class="input" name="harga" id="harga" placeholder="harga">
+                        </div>
+                    </div>
+
                     <div class="mb-3">
                         <label for="formFileSm" class="form-label">Small file input example</label>
                         <input class="form-control form-control-sm" id="formFileSm" name="file" type="file">

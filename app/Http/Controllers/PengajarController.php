@@ -12,6 +12,9 @@ class PengajarController extends Controller
     //
     public function index()
     {
+
+        notify()->success('Action success!');
+
         $materi = DB::table('materi')->leftJoin('users', 'materi.id', '=', 'users.id')
         ->get();
 
@@ -40,6 +43,7 @@ class PengajarController extends Controller
             'id'=>Auth::User()->id,
             'nama_materi'=>$request->nama_materi,
             'deskripsi'=>$request->deskripsi,
+            'harga'=>$request->harga,
             'img_catalog' => $file->getClientOriginalName(),
             'modal' => Str::random(5),
         ]);
@@ -47,14 +51,14 @@ class PengajarController extends Controller
         $tujuan_upload = 'data_file';
         $file->move($tujuan_upload,$file->getClientOriginalName());
 
-        return redirect("/dashboardadmin");
+        return redirect("/dashboardadmin")->with('add-success','Tambah berhasil!');
     }
 
     public function hapus($id)
     {
         DB::table('materi')->where('id_materi',$id)->delete();
             
-        return redirect('/dashboardadmin');
+        return redirect('/dashboardadmin')->with('hapus-success','Hapus berhasil!');
     }
 
     public function edit($id)
@@ -71,8 +75,9 @@ class PengajarController extends Controller
         DB::table('materi')->where('id_materi', $request->id_materi)->update([
             'nama_materi' => $request->nama_materi,
             'deskripsi'   => $request->deskripsi,
+            'harga'   => $request->harga,
         ]);
 
-        return redirect('/dashboardadmin');
+        return redirect('/dashboardadmin')->with('edit','Edit berhasil!');
     }
 }

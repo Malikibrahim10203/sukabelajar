@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/dashboardstyle.css">
+    @notifyCss
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
@@ -13,7 +14,20 @@
 <body>
 
     @if( Auth::User()->level == "pengajar")
-        <div class="menu-top">
+        @if(session('alert-success'))
+            <x-notify::notify />
+            @notifyJs
+        @elseif(session('add-success'))
+            <x-notify::notify />
+            @notifyJs
+        @elseif(session('hapus-success'))
+            <x-notify::notify />
+            @notifyJs
+        @elseif(session('edit'))
+            <x-notify::notify />
+            @notifyJs
+        @endif
+        <div class="menu-top-pengajar">
             <nav class="navbar navbar-expand-lg bg-body-tertiary">
                 <div class="container-fluid">
                     <a class="nav-link" href="#">Navbar</a>
@@ -57,7 +71,7 @@
                     <button type="button" class="btn btn-outline-light lihat" style="color: white; border-radius: 30px;">Lihat Selengkapnya..</button>
                 </div>
                 <div class="flex-item">
-                    <img src="{{ asset('img/model.png') }}" style="width: 600px; height: 450px;" alt="">
+                    <img src="{{ asset('img/model-2.png') }}" style="width: 670px; height: 450px; left: 20px;" alt="">
                 </div>
             </div>
 
@@ -91,7 +105,7 @@
             ?>
             -->
         </div>
-        <div class="menu-mid mt-5">
+        <div class="menu-mid-pengajar mt-5 table-mid">
             <div class="materi">
                 <a href="/tambah" class="btn btn-primary"><i class="bi bi-plus"></i></a>
                 <table class="table table-hover shadow-sm mt-3">
@@ -130,57 +144,22 @@
                     </ul>
                 </nav>
             </div>
-
-            <div class="course-list mt-5">
-                <div class="course-head">
-                    <h5>Menjadi Developer Handal</h5>
-                    <h1>Kelas Belajar Android Online</h1>
-                    <p>SUKABELAJAR, Menyediakan kursus pelatihan Android Basic <br>yang dapat dimengerti oleh programer pemula.</p>
-                </div>
-                <div class="course-content mt-5">
-                    @foreach($materi as $content)
-                        <div class="card shadow" style="width: 250px; height: 300px;">
-                            <?php
-                                echo '<img src="' . asset("data_file/{$content->img_catalog}") . '" class="card-img-top catalog">';
-                                //echo "<img src='. asset(`data_file/{$content->img}`) .' class='card-img-top' alt='...'>";
-                            ?>
-                            <div class="card-body content-items">
-                                <?php
-                                    echo "<p class='card-text'>$content->nama_materi</p>";
-                                ?>
-                                <button type="button" class="btn btn-success btn-buy"  data-bs-toggle="modal" data-bs-target="#<?php echo $content->modal?>" ><i class="bi bi-bag" style="font-size: 15px;"></i></button>
-
-                                <div class="modal fade" id="<?php echo $content->modal?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h1 class="modal-title fs-5" id="exampleModalLabel">{{ $content->nama_materi }}</h1>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <?php
-                                                    echo '<img src="' . asset("data_file/{$content->img_catalog}") . '" class="card-img-top catalog">';
-                                                    //echo "<img src='. asset(`data_file/{$content->img}`) .' class='card-img-top' alt='...'>";
-                                                ?>
-                                                <h3 class="mt-3">{{ $content->nama_lengkap }}</h3>
-                                                <p>{{ $content->deskripsi }}</p>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <form action="" method="post">
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                    <button type="button" class="btn btn-primary">Beli</button>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-            </div>
         </div>
     @elseif (Auth::User()->level == "pelajar")
+
+        @if(session('alert-success'))
+            <x-notify::notify />
+            @notifyJs
+        @elseif(session('add-success'))
+            <x-notify::notify />
+            @notifyJs
+        @elseif(session('hapus-success'))
+            <x-notify::notify />
+            @notifyJs
+        @elseif(session('edit'))
+            <x-notify::notify />
+            @notifyJs
+        @endif
         <div class="menu-top" data-bs-spy="scroll">
             <nav class="navbar navbar-expand-lg bg-body-tertiary">
                 <div class="container-fluid">
@@ -270,7 +249,7 @@
                     @foreach($materi as $content)
                         <div class="card mx-2 shadow" style="width: 250px; height: 270px;">
                             <?php
-                                echo '<img src="' . asset("data_file/{$content->img_catalog}") . '" class="card-img-top catalog">';
+                                echo '<img src="' . asset("data_file/{$content->img_catalog}") . '" class="card-img-top catalog" style="height: 150px;">';
                                 //echo "<img src='. asset(`data_file/{$content->img}`) .' class='card-img-top' alt='...'>";
                             ?>
                             <div class="card-body content-items">
@@ -290,19 +269,21 @@
                                                 </div>
                                                 <div class="modal-body">
                                                     <?php
-                                                        echo '<img src="' . asset("data_file/{$content->img_catalog}") . '" class="card-img-top catalog">';
+                                                        echo '<img src="' . asset("data_file/{$content->img_catalog}") . '" class="card-img-top catalog" >';
                                                         //echo "<img src='. asset(`data_file/{$content->img}`) .' class='card-img-top' alt='...'>";
                                                     ?>
                                                     <h3 class="mt-3">{{ $content->nama_lengkap }}</h3>
                                                     <p>{{ $content->deskripsi }}</p>
+                                                    <p>Rp.{{ $content->harga }}</p>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                    <form action="/proses_beli" method="post">
-                                                    {{ csrf_field() }}  
+                                                    <form action="/payment" method="GET" style="width: 100%;">
                                                         <input type="hidden" name="id_materi" value="<?php echo $content->id_materi?>">
-                                                        <button type="submit" class="btn btn-primary">Beli</button>
+                                                        <input type="hidden" name="nama_materi" value="<?php echo $content->nama_materi?>">
+                                                        <input type="hidden" name="harga" value="<?php echo $content->harga?>">
+                                                        <button type="submit" class="btn btn-success">Buy</button>
                                                     </form>
+                                                    
                                                 </div>
                                             </div>
                                         </div>
@@ -319,7 +300,7 @@
                     @foreach($transaksi as $content)
                         <div class="card mx-2 shadow course-card" style="width: 250px; height: 270px;">
                             <?php
-                                echo '<img src="' . asset("data_file/{$content->img_catalog}") . '" class="card-img-top catalog">';
+                                echo '<img src="' . asset("data_file/{$content->img_catalog}") . '" class="card-img-top catalog" style="height: 150px;">';
                                 //echo "<img src='. asset(`data_file/{$content->img}`) .' class='card-img-top' alt='...'>";
                             ?>
                             <div class="card-body content-items">
@@ -344,15 +325,16 @@
                                                     //echo "<img src='. asset(`data_file/{$content->img}`) .' class='card-img-top' alt='...'>";
                                                 ?>
                                                 <h3 class="mt-3">p</h3>
-                                                <p>p</p>
+                                                <p>{{ $content->harga }}</p>
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                 <form action="/proses_beli" method="post">
                                                 {{ csrf_field() }}  
                                                     <input type="hidden" name="id_materi" value="<?php echo $content->id_materi?>">
+                                                    <input type="hidden" name="id" value="<?php echo $content->harga?>">
                                                     <input type="hidden" name="id" value="<?php echo $content->id?>">
-                                                    <button type="submit" class="btn btn-primary">Beli</button>
+                                                    <!--<button type="submit" class="btn btn-primary">Beli</button>-->
                                                 </form>
                                             </div>
                                         </div>
